@@ -9,7 +9,6 @@ const UserPerformancePage = () => {
   const [userAnswers, setUserAnswers] = useState({});
   const [results, setResults] = useState(null);
 
-  // Simulated questions and correct answers
   const correctAnswers = {
     0: "Respiración celular",
     1: "ADN",
@@ -27,7 +26,6 @@ const UserPerformancePage = () => {
     4:  "Los leucocitos, o glóbulos blancos, protegen al cuerpo contra infecciones"
   };
 
-  // Simulate generating an exam
   const generateExam = async () => {
     const simulatedQuestions = [
       { question: "¿Cuál es la función principal de las mitocondrias en las células?", choices: ["Síntesis de proteínas", "Respiración celular", "Digestión de desechos", "Reproducción celular"] },
@@ -38,11 +36,10 @@ const UserPerformancePage = () => {
 
     ].slice(0, numQuestions);
     setQuestions(simulatedQuestions);
-    setResults(null); // Reset results when new quiz is generated
-    setUserAnswers({}); // Reset user answers
+    setResults(null);
+    setUserAnswers({});
   };
 
-  // Track user answers
   const handleAnswerChange = (questionIndex, answer) => {
     setUserAnswers((prevAnswers) => ({
       ...prevAnswers,
@@ -50,7 +47,6 @@ const UserPerformancePage = () => {
     }));
   };
 
-  // Calculate and display the results
   const handleGrade = () => {
     let correctCount = 0;
     let feedbackMessages = [];
@@ -73,17 +69,17 @@ const UserPerformancePage = () => {
 
       <div className="content">
         <div className="content-header">
-          <h1>Exam Generator</h1>
+          <h1>Generador de examenes</h1>
 
         </div>
 
         <div className="form-section">
-          <h2>Create a New Quiz</h2>
+          <h2>Crear nuevo quizz</h2>
           <div className="form-card">
-            <h3>Generate a Custom Exam</h3>
+            <h3>Perzonalizar items</h3>
             <form onSubmit={(e) => { e.preventDefault(); generateExam(); }}>
               <div className="input-group">
-                <label htmlFor="topic">Exam Topic:</label>
+                <label htmlFor="topic">Temas:</label>
                 <input
                   type="text"
                   id="topic"
@@ -95,20 +91,20 @@ const UserPerformancePage = () => {
               </div>
 
               <div className="input-group">
-                <label htmlFor="difficulty">Difficulty Level:</label>
+                <label htmlFor="difficulty">Nivel de dificultad:</label>
                 <select
                   id="difficulty"
                   value={difficulty}
                   onChange={(e) => setDifficulty(e.target.value)}
                 >
-                  <option value="easy">Easy</option>
-                  <option value="medium">Medium</option>
-                  <option value="hard">Hard</option>
+                  <option value="easy">Facil</option>
+                  <option value="medium">Media</option>
+                  <option value="hard">Dificil</option>
                 </select>
               </div>
 
               <div className="input-group">
-                <label htmlFor="num">Number of Questions:</label>
+                <label htmlFor="num">Numero de preguntas:</label>
                 <select
                   id="num"
                   value={numQuestions}
@@ -129,7 +125,7 @@ const UserPerformancePage = () => {
                 </select>
               </div>
 
-              <button type="submit" className="generate-btn">Generate Quiz</button>
+              <button type="submit" className="generate-btn">Genera examen</button>
             </form>
           </div>
         </div>
